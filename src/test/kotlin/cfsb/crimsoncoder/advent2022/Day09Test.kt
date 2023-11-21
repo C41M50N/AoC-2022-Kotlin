@@ -15,14 +15,13 @@ class Day09Test {
         @Test
         fun example() {
             val answer = Day09(resourceAsText("day09_ex.txt")).solveP1()
-            assertThat(answer).isEqualTo(0)
+            assertThat(answer).isEqualTo(13)
         }
 
         @Test
         fun answer() {
             val answer = Day09(resourceAsText("day09.txt")).solveP1()
-            assertThat(answer).isEqualTo(0)
-            // < 6161
+            assertThat(answer).isEqualTo(5874)
         }
     }
 
@@ -32,7 +31,7 @@ class Day09Test {
         @Test
         fun example() {
             val answer = Day09(resourceAsText("day09_ex.txt")).solveP2()
-            assertThat(answer).isEqualTo(8L)
+            assertThat(answer).isEqualTo(36)
         }
 
         @Test

@@ -21,7 +21,7 @@ class Day09(input: String) {
     private fun parseInput(input: String): List<RopeOperation> {
         return input
             .trim()
-            .split("\r\n")
+            .lines()
             .map { line ->
                 val (a,b) = line.split(" ", limit = 2)
                 val direction: RopeOperationDirection = when (a) {
@@ -79,7 +79,7 @@ class RopeSimulator {
         // move head
         head = Pair(head.first - 1, head.second)
         // check if tail needs to be moved
-        if (!isAdjacent(head, tail)) {
+        if (!isTouching(head, tail)) {
             // calculate next tail
             tail = Pair(head.first + 1, head.second)
             // add to tailVisits
@@ -91,7 +91,7 @@ class RopeSimulator {
         // move head
         head = Pair(head.first + 1, head.second)
         // check if tail needs to be moved
-        if (!isAdjacent(head, tail)) {
+        if (!isTouching(head, tail)) {
             // calculate next tail
             tail = Pair(head.first - 1, head.second)
             // add to tailVisits
@@ -103,7 +103,7 @@ class RopeSimulator {
         // move head
         head = Pair(head.first, head.second + 1)
         // check if tail needs to be moved
-        if (!isAdjacent(head, tail)) {
+        if (!isTouching(head, tail)) {
             // calculate next tail
             tail = Pair(head.first, head.second - 1)
             // add to tailVisits
@@ -115,7 +115,7 @@ class RopeSimulator {
         // move head
         head = Pair(head.first, head.second - 1)
         // check if tail needs to be moved
-        if (!isAdjacent(head, tail)) {
+        if (!isTouching(head, tail)) {
             // calculate next tail
             tail = Pair(head.first, head.second + 1)
             // add to tailVisits
@@ -123,16 +123,9 @@ class RopeSimulator {
         }
     }
 
-    private fun isAdjacent(p1: Point, p2: Point): Boolean {
+    private fun isTouching(p1: Point, p2: Point): Boolean {
         val xDif = abs( p1.first - p2.first )
         val yDif = abs( p1.second - p2.second )
-        if (xDif == 1 && yDif == 1) {
-            return true
-        } else if (xDif == 1 && yDif == 0) {
-            return true
-        } else if (xDif == 0 && yDif == 1) {
-            return true
-        }
-        return false
+        return xDif <= 1 && yDif <= 1
     }
 }
