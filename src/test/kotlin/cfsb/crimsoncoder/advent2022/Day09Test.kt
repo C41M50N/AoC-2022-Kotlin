@@ -31,13 +31,19 @@ class Day09Test {
         @Test
         fun example() {
             val answer = Day09(resourceAsText("day09_ex.txt")).solveP2()
+            assertThat(answer).isEqualTo(1)
+        }
+
+        @Test
+        fun example2() {
+            val answer = Day09(resourceAsText("day09_ex2.txt")).solveP2()
             assertThat(answer).isEqualTo(36)
         }
 
         @Test
         fun answer() {
             val answer = Day09(resourceAsText("day09.txt")).solveP2()
-            assertThat(answer).isEqualTo(209880L)
+            assertThat(answer).isEqualTo(2467)
         }
     }
 }
